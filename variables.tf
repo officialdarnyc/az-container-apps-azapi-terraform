@@ -203,7 +203,7 @@ variable "container_apps" {
       }]
       scale           = {
         minReplicas   = 1
-        maxReplicas   = 1
+        maxReplicas   = 5
       }
     }
   },
@@ -226,7 +226,7 @@ variable "container_apps" {
       }]
       scale           = {
         minReplicas   = 1
-        maxReplicas   = 1
+        maxReplicas   = 5
       }
     }
   }]
