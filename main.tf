@@ -1,16 +1,22 @@
 terraform {
-  required_version = ">= 1.0"
+  required_version = ">= 1.3.0"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.3.0"
+      version = "~>3.3.0"
     }
     azapi = {
       source  = "Azure/azapi"
-      version = "0.4.0"
+      version = "~>1.0.0"
     }
   }
-  experiments = [module_variable_optional_attrs]
+
+  backend "azurerm" {
+    resource_group_name  = "TfStorage"
+    storage_account_name = "dev01tfbackend"
+    container_name       = "tfstatecontainer"
+    key                  = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
@@ -19,6 +25,7 @@ provider "azurerm" {
 
 provider "azapi" {
 }
+
 
 resource "random_string" "resource_prefix" {
   length  = 6
